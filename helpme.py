@@ -1,22 +1,24 @@
 import math
 from termcolor import colored
-#idee van terebo
-foutgegaan = 0
-zucht = " "
 #menu, zal altijd in een loop zijn
+foutgegaan = -1
+zucht = ""
 def keuze():
-	startding = str(input('Type \'shower\' to calculate.\n Type exit to stop.\n'))
-	if startding == 'shower':
-		shower()
-	elif startding == 'exit':
-		exit()
-	else: 
-		print(colored('your fucking retarded' + zucht, 'red'))
-		keuze()
-		foutgegaan += 1
-		if foutgegaan > 3:
-			zucht = " zucht..."
-			#geeft erro: [pyflakes] local variable 'zucht' is assigned to but never used
+        #idee van terebo
+    global zucht
+    startding = str(input('Type \'shower\' to calculate.\n Type exit to stop.' + zucht + '\n'))
+    if startding == 'shower':
+        shower()
+    elif startding == 'exit':
+        exit()
+    else:
+        print(colored('your fucking retarded', 'red'))
+        global foutgegaan
+        foutgegaan += int(1)
+        if foutgegaan > 3:
+            zucht = " zucht..."
+            #geeft erro: [pyflakes] local variable 'zucht' is assigned to but never used. was geen global var :)
+        keuze()
 
 #shower dingetje
 def shower():
@@ -37,14 +39,5 @@ def shower():
     keuze()
 
 #eerste start menu
-eerstestartding = str(input('Type \'shower\' to calculate.\n'))
-if eerstestartding == 'shower':
-    shower()
-else:
-    print('wtf that isnt shower try again drunk bitch')
-    keuze()
-    foutgegaan += 1
-    if foutgegaan > 3:
-		   zucht = " zucht..."
-		
+keuze()
 
